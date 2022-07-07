@@ -16,13 +16,10 @@ namespace Asteroids
             _camera = Camera.main;
             rigidbodyPlayer = GetComponent<Rigidbody>();
             var moveTransform = new AccelerationMove(transform, _speed,_acceleration);
-            var rotation = new RotationShip(transform);
-            _ship = new Ship(moveTransform, rotation);
+            _ship = new Ship(moveTransform);
         }
         private void Update()
         {
-            var direction = Input.mousePosition - _camera.WorldToScreenPoint(transform.position);
-            _ship.Rotation(direction);
             _ship.Move(Time.deltaTime, rigidbodyPlayer, Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -34,7 +31,7 @@ namespace Asteroids
             {
                 _ship.RemoveAcceleration();
             }
-
+            
         }
     }
 }

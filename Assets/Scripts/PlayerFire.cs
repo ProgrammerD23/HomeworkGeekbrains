@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Bullet.Object_Pool;
 
 public class PlayerFire : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D _bullet;
     [SerializeField] private Transform _barrel;
     [SerializeField] private float _force;
 
@@ -12,8 +12,12 @@ public class PlayerFire : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            var temAmmunition = Instantiate(_bullet, _barrel.position, _barrel.rotation);
-            temAmmunition.AddForce(_barrel.up * _force);
+            BulletPool enemyPool = new BulletPool(1);
+            var enemy = enemyPool.GetEnemy("Bullet");
+            enemy.transform.position = _barrel.position;
+            enemy.gameObject.SetActive(true);
+            var rigidbody = enemy.GetComponent<Rigidbody2D>();
+            rigidbody.AddForce(_barrel.up * _force);
         }
     }
 }

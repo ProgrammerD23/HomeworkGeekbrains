@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Asteroids
 {
-    public class PlayerHealth : MonoBehaviour
+    public class PlayerHealth : MonoBehaviour, ITakeDamage
     {
         [SerializeField] private float _hp;
-        private void OnCollisionEnter2D(Collision2D other)
+
+        public void Hit(float damage)
         {
             if (_hp <= 0)
             {
@@ -14,7 +15,7 @@ namespace Asteroids
             }
             else
             {
-                _hp--;
+                _hp -= damage;
             }
         }
     }

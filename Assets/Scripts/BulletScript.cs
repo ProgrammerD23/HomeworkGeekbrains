@@ -4,9 +4,8 @@ using UnityEngine;
 
 namespace Asteroids
 {
-    public interface IRotation
+    public class BulletScript : MonoBehaviour
     {
-        void Rotation(Vector3 direction);
+
     }
 }
-

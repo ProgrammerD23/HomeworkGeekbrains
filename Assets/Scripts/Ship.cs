@@ -4,23 +4,17 @@ using UnityEngine;
 
 namespace Asteroids
 {
-    internal sealed class Ship : IMove, IRotation
+    internal sealed class Ship : IMove
     {
         private readonly IMove _moveImplementation;
-        private readonly IRotation _rotationImplementation;
         public float Force => _moveImplementation.Force;
-        public Ship(IMove moveImplementation, IRotation rotationImplementation)
+        public Ship(IMove moveImplementation)
         {
             _moveImplementation = moveImplementation;
-            _rotationImplementation = rotationImplementation;
         }
         public void Move(float deltaTime, Rigidbody rigidbody, float x, float y)
         {
             _moveImplementation.Move(deltaTime, rigidbody, x, y);
-        }
-        public void Rotation(Vector3 direction)
-        {
-            _rotationImplementation.Rotation(direction);
         }
         public void AddAcceleration()
         {
