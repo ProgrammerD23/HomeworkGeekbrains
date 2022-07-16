@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Asteroids
 {
+    [System.Serializable]
     public abstract class Enemy : MonoBehaviour
     {
         public static IEnemyFactory Factory;

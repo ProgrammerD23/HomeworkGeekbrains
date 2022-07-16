@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Bullet.Object_Pool;
-
-public class PlayerFire : MonoBehaviour
+using Asteroids.ServiceLocator;
+    public class PlayerFire : MonoBehaviour
 {
     [SerializeField] private Transform _barrel;
     [SerializeField] private float _force;
@@ -12,8 +12,9 @@ public class PlayerFire : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            BulletPool enemyPool = new BulletPool(1);
-            var enemy = enemyPool.GetEnemy("Bullet");
+            //BulletPool enemyPool = new BulletPool(1);
+            ServiceLocator.SetService<IService>(new BulletPool(1));
+            var enemy = ServiceLocator.Resolve<IService>().GetEnemy("Bullet");
             enemy.transform.position = _barrel.position;
             enemy.gameObject.SetActive(true);
             var rigidbody = enemy.GetComponent<Rigidbody2D>();

@@ -1,9 +1,11 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Asteroids.Prototype;
 
 namespace Asteroids
 {
+    [Serializable]
     public sealed class GameStarter : MonoBehaviour
     {
         void Start()
@@ -14,7 +16,10 @@ namespace Asteroids
             //factory.CreateAndMove(new EnemyHealth(100.0f, 100.0f));
             Enemy.Factory = factory;
             Enemy.Factory.CreateAndMove(new EnemyHealth(100.0f, 100.0f));
-            EnemyShip.CreateEnemyShip();
+            EnemyShip enemyShip = gameObject.AddComponent<EnemyShip>();
+            enemyShip.CreateEnemyShip(-1f);
+            //EnemyShip enemyShipNew = enemyShip.DeepCopy();
+            //enemyShipNew.CreateEnemyShip(-0.1f);
         }
     }
 }

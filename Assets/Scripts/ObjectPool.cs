@@ -4,10 +4,11 @@ using System.Linq;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using Asteroids;
+using Asteroids.ServiceLocator;
 
 namespace Bullet.Object_Pool
 {
-    internal sealed class BulletPool
+    internal sealed class BulletPool : IService
     {
         private readonly Dictionary<string, HashSet<BulletScript>> _enemyPool;
         private readonly int _capacityPool;
