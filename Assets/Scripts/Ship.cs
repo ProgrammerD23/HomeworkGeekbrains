@@ -8,9 +8,11 @@ namespace Asteroids
     {
         private readonly IMove _moveImplementation;
         public float Force => _moveImplementation.Force;
-        public Ship(IMove moveImplementation)
+        public int Attack;
+        public Ship(IMove moveImplementation, int attack)
         {
             _moveImplementation = moveImplementation;
+            Attack = attack;
         }
         public void Move(float deltaTime, Rigidbody rigidbody, float x, float y)
         {

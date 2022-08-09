@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Asteroids.Chain_of_Responsibility;
 
 namespace Asteroids
 {
@@ -16,7 +17,9 @@ namespace Asteroids
             _camera = Camera.main;
             rigidbodyPlayer = GetComponent<Rigidbody>();
             var moveTransform = new AccelerationMove(transform, _speed,_acceleration);
-            _ship = new Ship(moveTransform);
+            _ship = new Ship(moveTransform, 1);
+            var root = new EnemyModifier(_ship);
+            root.Add(new AddAttackModifier(_ship, 10));
         }
         private void Update()
         {
