@@ -23,7 +23,7 @@ namespace Asteroids
         }
         private void Update()
         {
-            _ship.Move(Time.deltaTime, rigidbodyPlayer, Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            /*_ship.Move(Time.deltaTime, rigidbodyPlayer, Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
@@ -33,7 +33,7 @@ namespace Asteroids
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 _ship.RemoveAcceleration();
-            }
+            }*/
             
         }
     }
